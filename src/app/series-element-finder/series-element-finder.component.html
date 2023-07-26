@@ -1,0 +1,31 @@
+<h2 class="text-3xl mb-3 font-semibold">Series Finder</h2>
+
+<p class="text-xl mb-1.5">Series: 2, 3, 10, 15, 26, 35, 50, 63...</p>
+
+<section class="bg-gray-200 px-3 py-5 rounded-xl">
+  <div class="flex flex-col gap-2 mb-4">
+    <label for="index" class="text-lg font-semibold">Series index</label>
+    <input
+      id="index"
+      type="number"
+      min="1"
+      [(ngModel)]="index"
+      class="px-3 py-2 rounded-xl"
+      #indexInput="ngModel"
+    />
+    <p *ngIf="indexInput.invalid" class="text-red-800 font-semibold">
+      Index should be a non-zero positive integer!
+    </p>
+  </div>
+  <button
+    (click)="calculate()"
+    class="disabled:bg-gray-600 bg-teal-800 text-white rounded-xl py-1 px-3 font-semibold mb-2"
+    [disabled]="indexInput.invalid"
+  >
+    Calculate series value
+  </button>
+
+  <p *ngIf="seriesValue" class="text-md font-semibold">
+    Series value at the given index is {{ seriesValue }}
+  </p>
+</section>
